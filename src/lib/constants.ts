@@ -1,6 +1,7 @@
 export const SITE_URL = 'https://icraaz.com';
 export const SITE_NAME = 'icraaz.com';
 export const ACQUISITION_EMAIL = 'sales@desertrich.com';
+export const GOOGLE_SITE_VERIFICATION = 'sybcXjsYOXNBtqMkKUvxmd0gMZzV8nhKou3h40JHpfc';
 
 /** Cloudflare Images CDN — hero / OG */
 export const HERO_IMAGE_URL =

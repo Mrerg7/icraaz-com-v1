@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import StructuredData from '../components/StructuredData.astro';
-import { SITE_NAME, SITE_URL, HERO_IMAGE_URL } from '../lib/constants';
+import { SITE_NAME, SITE_URL, HERO_IMAGE_URL, GOOGLE_SITE_VERIFICATION } from '../lib/constants';
 
 interface Props {
   title?: string;
@@ -29,6 +29,7 @@ const themeColor = '#0D9488';
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content={themeColor} />
+    <meta name="google-site-verification" content={GOOGLE_SITE_VERIFICATION} />
     <meta name="keywords" content="ICRA Arizona, infection control risk assessment, healthcare construction, ICRA training AZ, ICRA consulting, ICRA compliance, Arizona hospital construction, premium domain" />
     {
       noindex ? (
