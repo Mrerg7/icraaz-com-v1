@@ -1,0 +1,152 @@
+---
+import { SITE_NAME } from '../lib/constants';
+---
+
+<div
+  id="inquiry-modal"
+  class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4"
+>
+  <div class="bg-white w-full max-w-lg rounded-3xl shadow-2xl overflow-hidden">
+    <!-- Modal Header -->
+    <div class="px-7 pt-6 pb-4 bg-slate-900 text-white flex justify-between items-center">
+      <div>
+        <div class="font-semibold text-xl tracking-tight">Acquire {SITE_NAME}</div>
+        <div class="text-teal-400 text-sm">Confidential inquiry form</div>
+      </div>
+      <button id="modal-close-btn" class="text-white/60 hover:text-white w-9 h-9 flex items-center justify-center" aria-label="Close modal">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+
+    <form id="inquiry-form" class="p-7 space-y-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-xs font-semibold tracking-wider text-slate-500 mb-1.5" for="full-name">FULL NAME</label>
+          <input type="text" id="full-name" required class="w-full border border-slate-200 focus:border-teal-500 outline-none px-4 py-3 rounded-2xl text-sm" placeholder="Alex Rivera" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold tracking-wider text-slate-500 mb-1.5" for="company">COMPANY / ORGANIZATION</label>
+          <input type="text" id="company" class="w-full border border-slate-200 focus:border-teal-500 outline-none px-4 py-3 rounded-2xl text-sm" placeholder="Your Company or 'Individual'" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <div>
+          <label class="block text-xs font-semibold tracking-wider text-slate-500 mb-1.5" for="email">EMAIL ADDRESS</label>
+          <input type="email" id="email" required class="w-full border border-slate-200 focus:border-teal-500 outline-none px-4 py-3 rounded-2xl text-sm" placeholder="you@company.com" />
+        </div>
+        <div>
+          <label class="block text-xs font-semibold tracking-wider text-slate-500 mb-1.5" for="phone">PHONE (OPTIONAL)</label>
+          <input type="tel" id="phone" class="w-full border border-slate-200 focus:border-teal-500 outline-none px-4 py-3 rounded-2xl text-sm" placeholder="(602) 555-0199" />
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-xs font-semibold tracking-wider text-slate-500 mb-1.5" for="message">TELL US ABOUT YOUR INTEREST</label>
+        <textarea id="message" rows="4" required class="w-full border border-slate-200 focus:border-teal-500 outline-none px-4 py-3.5 rounded-3xl text-sm resize-y min-h-[92px]" placeholder="I'm interested in acquiring icraaz.com for a new ICRA training and compliance platform targeting Arizona healthcare contractors. My budget range is..."></textarea>
+      </div>
+
+      <div class="pt-2">
+        <button type="submit"
+                class="w-full py-4 bg-teal-600 hover:bg-teal-700 active:bg-teal-800 transition-colors text-white font-semibold rounded-3xl flex items-center justify-center gap-x-2 text-base shadow-sm">
+          <span>Submit Confidential Inquiry</span>
+        </button>
+        <p class="text-center text-[10px] text-slate-400 mt-3">We typically respond within 24 hours. All inquiries are kept strictly confidential.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  function openModal() {
+    const modal = document.getElementById('inquiry-modal');
+    if (modal) {
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      setTimeout(() => {
+        document.getElementById('full-name')?.focus();
+      }, 300);
+    }
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('inquiry-modal');
+    if (modal) {
+      modal.classList.remove('flex');
+      modal.classList.add('hidden');
+    }
+  }
+
+  function submitInquiry(e: Event) {
+    e.preventDefault();
+    const form = document.getElementById('inquiry-form') as HTMLFormElement;
+    if (!form) return;
+    const submitBtn = form.querySelector('button[type="submit"]') as HTMLButtonElement;
+    if (!submitBtn) return;
+
+    submitBtn.innerHTML = `
+      <span class="flex items-center justify-center gap-x-2">
+        <svg class="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path>
+        </svg>
+        <span>Submitting...</span>
+      </span>
+    `;
+    submitBtn.disabled = true;
+
+    setTimeout(() => {
+      form.innerHTML = `
+        <div class="py-8 text-center">
+          <div class="mx-auto w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" />
+            </svg>
+          </div>
+          <h3 class="font-semibold text-2xl tracking-tight text-slate-900 mb-2">Inquiry Received</h3>
+          <p class="text-slate-600 max-w-xs mx-auto">Thank you. A member of our acquisition team will contact you within 24 hours to discuss next steps confidentially.</p>
+          <button onclick="closeModal()" type="button"
+                  class="mt-8 px-8 py-3 text-sm font-semibold border border-slate-200 hover:bg-slate-50 rounded-3xl transition-colors">
+            Close Window
+          </button>
+        </div>
+      `;
+    }, 1450);
+  }
+
+  // Setup event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    const closeBtn = document.getElementById('modal-close-btn');
+    if (closeBtn) {
+      closeBtn.addEventListener('click', closeModal);
+    }
+
+    const modal = document.getElementById('inquiry-modal');
+    if (modal) {
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) closeModal();
+      });
+    }
+
+    const form = document.getElementById('inquiry-form');
+    if (form) {
+      form.addEventListener('submit', submitInquiry);
+    }
+  });
+
+  // Keyboard escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('inquiry-modal');
+      if (modal && !modal.classList.contains('hidden')) {
+        closeModal();
+      }
+    }
+  });
+
+  // Expose globally for inline onclick handlers
+  (window as any).openModal = openModal;
+  (window as any).closeModal = closeModal;
+</script>

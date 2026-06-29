@@ -1,0 +1,384 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import InquiryModal from '../components/InquiryModal.astro';
+import { SITE_NAME, ACQUISITION_EMAIL, acquisitionMailto } from '../lib/constants';
+
+const siteCopy = await getCollection('siteCopy');
+const home = siteCopy.find((entry) => entry.id === 'home');
+
+const title = home?.data.title ?? `${SITE_NAME} — Premium Domain for ICRA in Arizona Healthcare Construction`;
+const description = home?.data.description ?? 'Acquire icraaz.com — the exact-match, premium .com domain for Infection Control Risk Assessment (ICRA) expertise, training, consulting, and compliance in Arizona\'s booming healthcare construction market.';
+
+const mailto = acquisitionMailto();
+---
+
+<BaseLayout title={title} description={description}>
+  <Nav />
+
+  <!-- Hero Section -->
+  <header class="healthcare-gradient text-white">
+    <div class="max-w-screen-2xl mx-auto px-8 pt-16 pb-20 md:pt-20 md:pb-24">
+      <div class="max-w-4xl">
+        <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-3xl mb-6 border border-white/20">
+          <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+          <span class="text-sm font-medium tracking-wide">EXCLUSIVELY AVAILABLE</span>
+        </div>
+
+        <h1 class="text-6xl md:text-7xl leading-[1.05] tracking-tighter font-semibold mb-4">
+          icraaz.com
+        </h1>
+
+        <p class="max-w-2xl text-2xl md:text-3xl text-teal-100 tracking-tight mb-3">
+          The definitive domain for Infection Control Risk Assessment in Arizona.
+        </p>
+
+        <p class="max-w-xl text-lg text-teal-200/90 mb-9">
+          Own the exact-match brand that positions you as the trusted authority
+          for healthcare contractors, facility managers, and compliance professionals across the Grand Canyon State.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <button onclick="openModal()"
+                  class="group inline-flex items-center justify-center gap-x-3 px-8 py-4 bg-white text-teal-700 font-semibold text-lg rounded-3xl hover:bg-teal-50 active:bg-white transition-all shadow-xl shadow-black/10">
+            <span>Secure This Domain</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 group-active:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+            </svg>
+          </button>
+
+          <a href="#opportunity"
+             class="inline-flex items-center justify-center gap-x-2 px-7 py-4 border border-white/30 hover:bg-white/10 text-white font-medium rounded-3xl transition-all text-lg">
+            <span>Explore the Opportunity</span>
+          </a>
+        </div>
+
+        <div class="mt-8 flex items-center gap-x-6 text-sm">
+          <div class="flex items-center -space-x-1">
+            <div class="w-6 h-6 bg-white/20 rounded-full border border-white/40"></div>
+            <div class="w-6 h-6 bg-white/20 rounded-full border border-white/40"></div>
+            <div class="w-6 h-6 bg-white/20 rounded-full border border-white/40"></div>
+          </div>
+          <span class="text-teal-200 text-sm">Trusted by forward-thinking healthcare construction leaders</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Trust / Stats Bar -->
+  <div class="border-b border-slate-200 bg-white">
+    <div class="max-w-screen-2xl mx-auto px-8 py-5">
+      <div class="flex flex-wrap justify-center md:justify-between items-center gap-x-8 gap-y-4 text-center md:text-left">
+        <div class="flex items-center gap-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" /></svg>
+          <span class="font-medium text-sm text-slate-600">Exact-match keyword domain</span>
+        </div>
+        <div class="flex items-center gap-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" /></svg>
+          <span class="font-medium text-sm text-slate-600">Arizona healthcare construction boom underway</span>
+        </div>
+        <div class="flex items-center gap-x-3">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-emerald-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm13.36-1.814a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clip-rule="evenodd" /></svg>
+          <span class="font-medium text-sm text-slate-600">High-intent, regulated niche with recurring need</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- The Opportunity Section -->
+  <section id="opportunity" class="max-w-screen-2xl mx-auto px-8 pt-16 pb-12">
+    <div class="max-w-3xl mb-10">
+      <div class="uppercase tracking-[2px] text-teal-600 text-xs font-semibold mb-2">ARIZONA HEALTHCARE CONSTRUCTION</div>
+      <h2 class="section-header tracking-tighter">A multi-billion dollar market that demands ICRA expertise.</h2>
+      <p class="mt-4 text-lg text-slate-600">Major health systems are investing heavily in new construction, expansions, and renovations. Every project requires strict Infection Control Risk Assessment (ICRA) protocols to protect patients.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-5">
+      <div class="bg-white border border-slate-200 rounded-3xl p-7 modern-card">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-5xl font-semibold tracking-tighter text-slate-900">$1.9B</div>
+            <div class="text-teal-600 font-medium mt-1">Mayo Clinic Phoenix Campus Transformation</div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-teal-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-5.25 0H21m0 0v12m0-12V3" /></svg>
+        </div>
+        <p class="text-sm text-slate-500 mt-5 leading-snug">New procedural building, vertical/horizontal expansions, 11 new ORs, and 48 additional beds. Massive ICRA requirements throughout.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-3xl p-7 modern-card">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-5xl font-semibold tracking-tighter text-slate-900">Ongoing</div>
+            <div class="text-teal-600 font-medium mt-1">Banner Health Expansions</div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-teal-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg>
+        </div>
+        <p class="text-sm text-slate-500 mt-5 leading-snug">Multiple active projects across the Phoenix metro including Banner Estrella and other facilities. Continuous renovation &amp; compliance work.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-3xl p-7 modern-card">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="text-5xl font-semibold tracking-tighter text-slate-900">Statewide</div>
+            <div class="text-teal-600 font-medium mt-1">New Hospitals &amp; Renovations</div>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-teal-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" /></svg>
+        </div>
+        <p class="text-sm text-slate-500 mt-5 leading-snug">Tucson Medical Center Rincon, Northern Arizona Healthcare planning, plus countless clinic and specialty facility upgrades requiring ICRA-certified teams.</p>
+      </div>
+    </div>
+
+    <div class="mt-8 text-center">
+      <p class="text-sm text-slate-500 max-w-md mx-auto">With population growth, aging infrastructure, and post-pandemic upgrades, Arizona's demand for specialized healthcare construction knowledge will only accelerate.</p>
+    </div>
+  </section>
+
+  <!-- Why ICRA Matters -->
+  <section id="icra" class="bg-white border-y border-slate-200 py-16">
+    <div class="max-w-screen-2xl mx-auto px-8">
+      <div class="max-w-3xl mb-10">
+        <div class="uppercase tracking-[2px] text-teal-600 text-xs font-semibold mb-2">INFECTION CONTROL RISK ASSESSMENT</div>
+        <h2 class="section-header tracking-tighter">What every contractor and facility leader in Arizona needs to know.</h2>
+        <p class="mt-4 text-lg text-slate-600">ICRA is not optional. It's a mandatory, multidisciplinary process that protects patients during construction and renovation in occupied healthcare facilities.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 modern-card">
+          <div class="w-11 h-11 flex items-center justify-center bg-teal-100 text-teal-600 rounded-2xl mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.5 6.375a4.125 4.125 0 118.25 0 4.125 4.125 0 01-8.25 0zM14.25 8.625a3.375 3.375 0 116.75 0 3.375 3.375 0 01-6.75 0zM1.5 19.125a7.125 7.125 0 0114.25 0v.003l-.001.119a.75.75 0 01-.363.63 13.067 13.067 0 01-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 01-.364-.63l-.001-.122zM17.25 19.128l-.001.144a2.25 2.25 0 01-.233.96 10.088 10.088 0 005.06-1.01.75.75 0 00.42-.643 4.875 4.875 0 00-6.957-4.611 8.586 8.586 0 011.71 5.157v.003z" /></svg>
+          </div>
+          <h4 class="font-semibold text-lg tracking-tight mb-2">The ICRA Team</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">Multidisciplinary group led by infection preventionists. Contractors must engage early to provide critical input on workflows, barriers, and equipment that clinicians may not visualize from blueprints alone.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 modern-card">
+          <div class="w-11 h-11 flex items-center justify-center bg-teal-100 text-teal-600 rounded-2xl mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 00-5.78 1.128 2.25 2.25 0 01-2.4 2.245 4.5 4.5 0 008.4-2.245c0-.399-.078-.78-.22-1.128zm0 0a15.998 15.998 0 003.388-1.62m-5.043-.025a15.994 15.994 0 011.622-3.395m3.42 3.42a15.995 15.995 0 004.764-4.648l3.876-5.814a1.151 1.151 0 00-1.597-1.597L14.146 6.32a15.996 15.996 0 00-4.649 4.763m3.42 3.42a6.776 6.776 0 00-3.42-3.42" /></svg>
+          </div>
+          <h4 class="font-semibold text-lg tracking-tight mb-2">Planning &amp; Design</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">Number and placement of isolation rooms, air handling in ORs and labs, water systems to control Legionella, patient flow, and strategic contaminant control measures.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 modern-card">
+          <div class="w-11 h-11 flex items-center justify-center bg-teal-100 text-teal-600 rounded-2xl mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-7.5-10a.75.75 0 01.83-1.17h14.5a.75.75 0 01.83 1.17l-7.5 10a.75.75 0 01-1.16 0zM12 11.25V4.5" /></svg>
+          </div>
+          <h4 class="font-semibold text-lg tracking-tight mb-2">During Construction</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">Class I–IV precautions based on risk level. Negative air pressure monitoring with alarms, daily checklists, vibration management around sensitive procedures, and coordinated utility shutdowns.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 modern-card">
+          <div class="w-11 h-11 flex items-center justify-center bg-teal-100 text-teal-600 rounded-2xl mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 8.944 11.623 1.751.433 3.593.433 5.344 0C19.176 20.04 23 15.342 23 9.749c0-1.142-.226-2.233-.628-3.24M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+          </div>
+          <h4 class="font-semibold text-lg tracking-tight mb-2">Risk Mitigation</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">Patient relocation planning, temporary HVAC and water system modifications, demolition protection, emergency suspension procedures, and clear delineation of responsibilities between all parties.</p>
+        </div>
+
+        <div class="bg-slate-50 border border-slate-100 rounded-3xl p-6 modern-card">
+          <div class="w-11 h-11 flex items-center justify-center bg-teal-100 text-teal-600 rounded-2xl mb-5">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" /></svg>
+          </div>
+          <h4 class="font-semibold text-lg tracking-tight mb-2">Specialized Training</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">Contractors and workers need targeted training (ASHE, union programs, etc.). Hospitals and GCs increasingly require proof of ICRA competency before awarding work.</p>
+        </div>
+      </div>
+
+      <div class="mt-8 p-5 bg-amber-50 border border-amber-100 rounded-3xl text-sm flex gap-x-4 items-start">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" /></svg>
+        <div class="text-amber-800 text-[13px] leading-snug">
+          <strong>Joint Commission &amp; CMS Compliance:</strong> Violations during construction can jeopardize Medicare/Medicaid funding and accreditation. Proactive ICRA collaboration between hospitals and contractors is non-negotiable.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why This Domain Section -->
+  <section id="why-domain" class="max-w-screen-2xl mx-auto px-8 py-16">
+    <div class="max-w-3xl mb-9">
+      <div class="uppercase tracking-[2px] text-teal-600 text-xs font-semibold mb-2">THE STRATEGIC ASSET</div>
+      <h2 class="section-header tracking-tighter">Why icraaz.com is the perfect brand foundation.</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="bg-white border border-slate-200 p-7 rounded-3xl modern-card">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="text-teal-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+          </div>
+          <h4 class="font-semibold text-xl tracking-tight">Exact-Match Authority</h4>
+        </div>
+        <p class="text-slate-600">"ICRA AZ" instantly communicates exactly what you do. No explanation needed. In a high-trust, regulated industry, this kind of clarity builds instant credibility with hospital administrators, GCs, and procurement teams.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-7 rounded-3xl modern-card">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="text-teal-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" /></svg>
+          </div>
+          <h4 class="font-semibold text-xl tracking-tight">Geo-Targeted Precision</h4>
+        </div>
+        <p class="text-slate-600">Arizona has one of the fastest-growing healthcare construction pipelines in the U.S. The domain owns the local conversation before competitors even enter the room.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-7 rounded-3xl modern-card">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="text-teal-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" /></svg>
+          </div>
+          <h4 class="font-semibold text-xl tracking-tight">Short, Memorable &amp; Brandable</h4>
+        </div>
+        <p class="text-slate-600">Only 8 characters. Easy to spell, say, type, and remember. Performs beautifully on business cards, proposals, email signatures, vehicle wraps, and digital ads.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-7 rounded-3xl modern-card">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="text-teal-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" /></svg>
+          </div>
+          <h4 class="font-semibold text-xl tracking-tight">SEO &amp; Search Advantage</h4>
+        </div>
+        <p class="text-slate-600">Strong alignment with high-intent searches: "ICRA Arizona", "ICRA training AZ", "healthcare construction infection control Phoenix", and related B2B queries.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-7 rounded-3xl modern-card">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="text-teal-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182" /></svg>
+          </div>
+          <h4 class="font-semibold text-xl tracking-tight">Recurring &amp; Future-Proof Demand</h4>
+        </div>
+        <p class="text-slate-600">Healthcare facilities never stop renovating, expanding, or maintaining. Regulations tighten. The need for ICRA knowledge, training, and compliance services is permanent and growing.</p>
+      </div>
+
+      <div class="bg-white border border-slate-200 p-7 rounded-3xl modern-card">
+        <div class="flex items-center gap-x-3 mb-4">
+          <div class="text-teal-600">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" /></svg>
+          </div>
+          <h4 class="font-semibold text-xl tracking-tight">Multiple Monetization Paths</h4>
+        </div>
+        <p class="text-slate-600">ICRA training academy • Compliance consulting firm • Digital permit/SaaS platform • Contractor directory • Resource hub • Certification partnership • Lead generation engine.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Models / Use Cases -->
+  <section class="bg-slate-900 text-white py-16">
+    <div class="max-w-screen-2xl mx-auto px-8">
+      <div class="max-w-2xl mb-9">
+        <div class="text-teal-400 text-xs tracking-[2px] font-semibold mb-2">BUILD SOMETHING THAT MATTERS</div>
+        <h2 class="text-4xl tracking-tighter font-semibold">Proven business models you can launch immediately.</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-white/5 hover:bg-white/10 border border-white/10 p-6 rounded-3xl transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-teal-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" /></svg>
+          <h5 class="font-semibold mb-1.5">ICRA Training Academy</h5>
+          <p class="text-sm text-white/70">Offer certified training programs for Arizona contractors and union members. Partner with carpenters' unions and ASHE.</p>
+        </div>
+        <div class="bg-white/5 hover:bg-white/10 border border-white/10 p-6 rounded-3xl transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-teal-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg>
+          <h5 class="font-semibold mb-1.5">Specialized Consulting</h5>
+          <p class="text-sm text-white/70">Help general contractors and subs win and execute complex hospital projects with compliant ICRA plans and on-site support.</p>
+        </div>
+        <div class="bg-white/5 hover:bg-white/10 border border-white/10 p-6 rounded-3xl transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-teal-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" /></svg>
+          <h5 class="font-semibold mb-1.5">Compliance SaaS Platform</h5>
+          <p class="text-sm text-white/70">Build the go-to digital tool for ICRA matrix generation, permit tracking, daily checklists, and negative air monitoring logs — Arizona-specific.</p>
+        </div>
+        <div class="bg-white/5 hover:bg-white/10 border border-white/10 p-6 rounded-3xl transition-colors">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-teal-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" /></svg>
+          <h5 class="font-semibold mb-1.5">Niche Resource &amp; Directory</h5>
+          <p class="text-sm text-white/70">Become the central hub for ICRA best practices, case studies from AZ projects, and a vetted directory of trained professionals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Who Should Acquire -->
+  <section class="max-w-screen-2xl mx-auto px-8 py-16 border-b border-slate-200">
+    <div class="max-w-3xl">
+      <h2 class="section-header tracking-tighter mb-3">Who is this domain perfect for?</h2>
+      <p class="text-lg text-slate-600">icraaz.com is a strategic acquisition for organizations ready to own the category in one of America's most active healthcare construction markets.</p>
+    </div>
+
+    <div class="mt-8 grid md:grid-cols-3 gap-x-6 gap-y-4 text-sm">
+      <div class="flex gap-x-4">
+        <div class="mt-1 text-teal-600 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21" /></svg></div>
+        <div>
+          <div class="font-semibold">General Contractors &amp; Specialty Trades</div>
+          <div class="text-slate-600 text-sm">Position your firm as the ICRA-compliant choice for every major hospital bid in Arizona.</div>
+        </div>
+      </div>
+      <div class="flex gap-x-4">
+        <div class="mt-1 text-teal-600 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" /></svg></div>
+        <div>
+          <div class="font-semibold">Infection Control Consultants</div>
+          <div class="text-slate-600 text-sm">Instant brand authority when advising hospitals and construction teams on risk mitigation.</div>
+        </div>
+      </div>
+      <div class="flex gap-x-4">
+        <div class="mt-1 text-teal-600 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.438 60.438 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.906 59.906 0 0112 3.493a59.903 59.903 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342" /></svg></div>
+        <div>
+          <div class="font-semibold">Training Providers &amp; Unions</div>
+          <div class="text-slate-600 text-sm">Own the Arizona market for ICRA certification courses and continuing education.</div>
+        </div>
+      </div>
+      <div class="flex gap-x-4">
+        <div class="mt-1 text-teal-600 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z" /></svg></div>
+        <div>
+          <div class="font-semibold">HealthTech &amp; Compliance SaaS Founders</div>
+          <div class="text-slate-600 text-sm">Launch the category-defining platform for digital ICRA workflows and documentation.</div>
+        </div>
+      </div>
+      <div class="flex gap-x-4">
+        <div class="mt-1 text-teal-600 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-7.5-10a.75.75 0 01.83-1.17h14.5a.75.75 0 01.83 1.17l-7.5 10a.75.75 0 01-1.16 0zM12 11.25V4.5" /></svg></div>
+        <div>
+          <div class="font-semibold">Facility Management Companies</div>
+          <div class="text-slate-600 text-sm">Differentiate your service offering for hospitals and outpatient centers across the state.</div>
+        </div>
+      </div>
+      <div class="flex gap-x-4">
+        <div class="mt-1 text-teal-600 flex-shrink-0"><svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 008.716-6.747M12 21a9.004 9.004 0 01-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 017.843 4.582M12 3a8.997 8.997 0 00-7.843 4.582m15.686 0A11.953 11.953 0 0112 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0121 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0112 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 013 12c0-1.605.42-3.113 1.157-4.418" /></svg></div>
+        <div>
+          <div class="font-semibold">Domain Investors &amp; Strategists</div>
+          <div class="text-slate-600 text-sm">A rare, high-value, geo-niche exact-match premium domain with clear end-user demand.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA / Acquire Section -->
+  <section id="acquire" class="max-w-screen-2xl mx-auto px-8 py-20">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="premium-badge mb-4">EXCLUSIVE OPPORTUNITY</div>
+
+      <h2 class="text-5xl tracking-tighter font-semibold mb-4">Ready to own Arizona's ICRA brand?</h2>
+      <p class="text-xl text-slate-600 max-w-md mx-auto">icraaz.com is available for acquisition. Serious inquiries from qualified buyers are welcome.</p>
+
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+        <button onclick="openModal()"
+                class="w-full sm:w-auto px-10 py-4 bg-teal-600 hover:bg-teal-700 active:bg-teal-800 transition-all text-white font-semibold text-lg rounded-3xl flex items-center justify-center gap-x-3 shadow-lg shadow-teal-600/30">
+          <span>Submit Acquisition Inquiry</span>
+        </button>
+
+        <a href={mailto}
+           class="w-full sm:w-auto px-8 py-4 border border-slate-300 hover:bg-slate-100 transition-all font-medium text-slate-700 rounded-3xl flex items-center justify-center gap-x-2">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75" /></svg>
+          <span>{ACQUISITION_EMAIL}</span>
+        </a>
+      </div>
+
+      <div class="mt-8 text-xs text-slate-500 flex items-center justify-center gap-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" /></svg>
+        <span>Confidential inquiries • Professional escrow transfer • Fast closing available</span>
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+  <InquiryModal />
+</BaseLayout>
