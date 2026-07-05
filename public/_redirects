@@ -1,1 +1,2 @@
-# Static single-page site — no redirects needed
+# Consolidate duplicate homepage URLs to canonical trailing-slash path
+/index.html / 301
