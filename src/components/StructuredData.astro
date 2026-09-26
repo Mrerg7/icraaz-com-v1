@@ -4,10 +4,12 @@ import {
   SITE_NAME,
   HERO_IMAGE_URL,
   ACQUISITION_EMAIL,
+  ASKING_PRICE,
 } from '../lib/constants';
+import { FAQS } from '../lib/faq';
 
 const description =
-  'icraaz.com — The exact-match, premium .com domain for Infection Control Risk Assessment (ICRA) expertise, training, consulting, and compliance in Arizona healthcare construction.';
+  'icraaz.com — The exact-match, premium .com domain for Infection Control Risk Assessment (ICRA) expertise, training, consulting, and compliance in Arizona healthcare construction. Asking price $14,997 USD.';
 
 const webPage = {
   '@context': 'https://schema.org',
@@ -20,12 +22,31 @@ const webPage = {
     '@type': 'ImageObject',
     url: HERO_IMAGE_URL,
     contentUrl: HERO_IMAGE_URL,
+    width: 1200,
+    height: 630,
+    alt: 'icraaz.com premium domain for sale — infection control risk assessment in Arizona',
   },
   about: {
     '@type': 'Thing',
     name: 'Infection Control Risk Assessment (ICRA) Domain',
     description:
       'Premium .com domain name asset for ICRA expertise, training, consulting, and compliance services in Arizona healthcare construction.',
+  },
+};
+
+const webSite = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: SITE_NAME,
+  url: SITE_URL,
+  inLanguage: 'en-US',
+  description,
+  publisher: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+    email: ACQUISITION_EMAIL,
+    logo: HERO_IMAGE_URL,
   },
 };
 
@@ -56,8 +77,9 @@ const product = {
   offers: {
     '@type': 'Offer',
     availability: 'https://schema.org/InStock',
-    price: '14997',
+    price: ASKING_PRICE,
     priceCurrency: 'USD',
+    priceValidUntil: '2027-12-31',
     seller: {
       '@type': 'Organization',
       email: ACQUISITION_EMAIL,
@@ -100,8 +122,23 @@ const product = {
     },
   },
 };
+
+const faqPage = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: FAQS.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(webPage)} />
+<script type="application/ld+json" set:html={JSON.stringify(webSite)} />
 <script type="application/ld+json" set:html={JSON.stringify(organization)} />
 <script type="application/ld+json" set:html={JSON.stringify(product)} />
+<script type="application/ld+json" set:html={JSON.stringify(faqPage)} />

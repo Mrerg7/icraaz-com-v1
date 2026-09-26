@@ -1,0 +1,40 @@
+---
+import { acquisitionMailto, ASKING_PRICE_DISPLAY } from '../lib/constants';
+
+const mailto = acquisitionMailto('Domain acquisition inquiry: icraaz.com');
+---
+
+<!-- Mobile sticky conversion bar -->
+<div
+  id="sticky-cta"
+  class="fixed inset-x-0 bottom-0 z-40 md:hidden bg-white/95 backdrop-blur border-t border-slate-200 px-4 py-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] shadow-[0_-8px_24px_rgba(15,23,42,0.08)]"
+>
+  <div class="flex items-center gap-x-3">
+    <div class="shrink-0">
+      <div class="text-[10px] font-semibold tracking-[1.4px] text-teal-700">ASKING PRICE</div>
+      <div class="text-lg font-semibold text-slate-900 leading-tight">{ASKING_PRICE_DISPLAY}</div>
+    </div>
+    <a
+      href={mailto}
+      onclick="openModal(); return false;"
+      class="flex-1 py-3 bg-teal-700 hover:bg-teal-800 active:bg-teal-900 transition-colors text-white text-sm font-semibold rounded-2xl text-center"
+    >
+      Make an Offer
+    </a>
+  </div>
+</div>
+
+<script>
+  // Hide the sticky bar while the inquiry modal is open so they never overlap.
+  document.addEventListener('DOMContentLoaded', () => {
+    const bar = document.getElementById('sticky-cta');
+    if (!bar) return;
+    const observer = new MutationObserver(() => {
+      const modal = document.getElementById('inquiry-modal');
+      const modalOpen = !!modal && !modal.classList.contains('hidden');
+      bar.style.visibility = modalOpen ? 'hidden' : '';
+    });
+    const modal = document.getElementById('inquiry-modal');
+    if (modal) observer.observe(modal, { attributes: true, attributeFilter: ['class'] });
+  });
+</script>

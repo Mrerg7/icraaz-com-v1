@@ -10,7 +10,7 @@ const year = new Date().getFullYear();
 const mailto = acquisitionMailto();
 ---
 
-<footer class="border-t border-slate-200 bg-slate-900 text-slate-400">
+<footer class="border-t border-slate-200 bg-slate-900 text-slate-400 pb-20 md:pb-0">
   <!-- Sophisticated domain acquisition CTA -->
   <div class="max-w-screen-2xl mx-auto px-6 py-16 md:py-20">
     <div
@@ -45,7 +45,8 @@ const mailto = acquisitionMailto();
         <div class="md:col-span-5 flex flex-col sm:flex-row md:flex-col gap-4 md:items-end">
           <a
             href={mailto}
-            class="group w-full md:w-auto text-center px-8 py-4 bg-gradient-to-r from-teal-500 to-teal-600 text-white font-extrabold rounded-2xl hover:brightness-110 transition-all shadow-[0_0_40px_rgba(13,148,136,0.2)] flex items-center justify-center gap-2"
+            onclick="openModal(); return false;"
+            class="group w-full md:w-auto text-center px-8 py-4 bg-gradient-to-r from-teal-700 to-teal-800 text-white font-extrabold rounded-2xl hover:brightness-110 transition-all shadow-[0_0_40px_rgba(13,148,136,0.2)] flex items-center justify-center gap-2"
           >
             <span>Request acquisition terms</span>
             <svg
@@ -73,13 +74,25 @@ const mailto = acquisitionMailto();
 
   <!-- Legal + meta -->
   <div class="max-w-screen-2xl mx-auto px-6 pb-12">
-    <p class="text-[11px] leading-relaxed text-slate-500 max-w-4xl border-t border-slate-700 pt-8">
+    <p class="text-[11px] leading-relaxed text-slate-400 max-w-4xl border-t border-slate-700 pt-8">
       {DISCLAIMER}
-      <span class="block mt-2 text-slate-600">Information current as of June 2026.</span>
+      <span class="block mt-2 text-slate-400">Information current as of June 2026.</span>
     </p>
 
+    <nav
+      aria-label="Footer"
+      class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-xs font-medium text-slate-400"
+    >
+      <a href="#opportunity" class="py-2 hover:text-white transition-colors">The Opportunity</a>
+      <a href="#icra" class="py-2 hover:text-white transition-colors">Why ICRA Matters</a>
+      <a href="#why-domain" class="py-2 hover:text-white transition-colors">Why This Domain</a>
+      <a href="#faq" class="py-2 hover:text-white transition-colors">Buying FAQ</a>
+      <a href="#acquire" class="py-2 hover:text-white transition-colors">Acquire icraaz.com</a>
+      <a href="/sitemap-index.xml" class="py-2 hover:text-white transition-colors">Sitemap</a>
+    </nav>
+
     <div
-      class="mt-8 pt-6 border-t border-slate-700 text-xs text-slate-500 flex flex-col md:flex-row gap-y-4 items-center justify-between"
+      class="mt-6 pt-6 border-t border-slate-700 text-xs text-slate-400 flex flex-col md:flex-row gap-y-4 items-center justify-between"
     >
       <div>
         Transactions secured via <span class="font-medium text-slate-400">Escrow.com</span> · Premium domain brokerage

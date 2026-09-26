@@ -10,8 +10,8 @@ interface Props {
 }
 
 const {
-  title = `${SITE_NAME} — Premium Domain for ICRA in Arizona Healthcare Construction`,
-  description = 'Acquire icraaz.com — the exact-match, premium .com domain for Infection Control Risk Assessment (ICRA) expertise, training, consulting, and compliance in Arizona\'s booming healthcare construction market.',
+  title = `${SITE_NAME} — Premium ICRA Domain for Sale in Arizona`,
+  description = 'Buy icraaz.com — the exact-match .com domain for Infection Control Risk Assessment (ICRA) in Arizona healthcare construction. Asking $14,997, escrow-protected.',
   noindex = false,
 } = Astro.props;
 
@@ -50,7 +50,8 @@ const themeColor = '#0D9488';
     <meta property="og:locale" content="en_US" />
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:secure_url" content={ogImage} />
-    <meta property="og:image:alt" content="icraaz.com — premium ICRA domain for Arizona healthcare construction" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:alt" content="icraaz.com — premium domain for sale, infection control risk assessment in Arizona" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
@@ -59,10 +60,13 @@ const themeColor = '#0D9488';
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:image:alt" content="icraaz.com" />
+    <meta name="twitter:image:alt" content="icraaz.com premium domain for sale" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
